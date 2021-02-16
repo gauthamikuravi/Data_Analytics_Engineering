@@ -1,0 +1,79 @@
+
+Error starting at line : 2 in command -
+DROP TABLE department1 CASCADE CONSTRAINTS
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 3 in command -
+CREATE TABLE department1 (
+   dept_no NUMBER,
+   dept_name VARCHAR2(50 CHAR) NOT NULL,
+    web_address  VARCHAR2(50 CHAR),
+    main_phno  NUMBER,
+    email    VARCHAR2(50 CHAR),
+    street_number NUMBER), 
+    street_name VARCHAR2(50 CHAR), 
+    city VARCHAR2(50 CHAR), 
+    zip_code NUMBER,
+    state_D VARCHAR2(50 CHAR),
+    PRIMARY KEY(dept_no)
+)
+Error report -
+ORA-00922: missing or invalid option
+00922. 00000 -  "missing or invalid option"
+*Cause:    
+*Action:
+
+Error starting at line : 17 in command -
+INSERT INTO department1
+VALUES    
+    (201,'Statistics', 'www.stats.org', 22355679908 ,abc@gmail.com ,12, 'caval','fairfax', 22030,'VA' )
+Error at Command Line : 17 Column : 13
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 2 in command -
+DROP TABLE department1 CASCADE CONSTRAINTS
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 3 in command -
+CREATE TABLE department1 (
+   dept_no NUMBER,
+   dept_name VARCHAR2(50 CHAR) NOT NULL,
+    web_address  VARCHAR2(50 CHAR),
+    main_phno  NUMBER,
+    email    VARCHAR2(50 CHAR),
+    street_number NUMBER), 
+    street_name VARCHAR2(50 CHAR), 
+    city VARCHAR2(50 CHAR), 
+    zip_code NUMBER,
+    state_D VARCHAR2(50 CHAR),
+    PRIMARY KEY(dept_no),
+    ON DELETE CASCADE
+)
+Error report -
+ORA-00922: missing or invalid option
+00922. 00000 -  "missing or invalid option"
+*Cause:    
+*Action:
+
+Error starting at line : 18 in command -
+INSERT INTO department1
+VALUES    
+    (201,'Statistics', 'www.stats.org', 22355679908 ,abc@gmail.com ,12, 'caval','fairfax', 22030,'VA' )
+Error at Command Line : 18 Column : 13
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
