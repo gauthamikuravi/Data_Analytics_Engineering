@@ -12,7 +12,7 @@
 - [x] Creation, configuration and monitoring Shards sets. Analysis of the data to be shared, choosing a shard Key to distribute data evenly.
 - [x] Architecture and Capacity planning for MongoDB clusters. Implemented scripts for mongo DB import, export, dump and restore.
 - [x] Worked on MongoDB database concepts such as locking, transactions, indexes, Sharding, replication, schema design. 
-- [x]Created multiple databases with sharded collections and choosing shard key based on the requirements. 
+- [x] Created multiple databases with sharded collections and choosing shard key based on the requirements. 
 
 **Predictive Algorithms in Weka**
 
