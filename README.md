@@ -4,7 +4,7 @@
 
   ## [Natural Language Processing(AIT590](https://github.com/gauthamikuravi/Data_Analytics_Engineering/tree/main/Natural%20Language%20Processing): 
   
-  **Lab -1 Text Summarization for Webpage**
+ [Lab -1 Text Summarization for Webpage](https://github.com/gauthamikuravi/Data_Analytics_Engineering/blob/main/Natural%20Language%20Processing/Labs/AIT590_SaiGauthamikuravi_Lab1.ipynb)
 
 - [x] Beautiful soup for Web Scraping, NLTK,Gensim
 - [x] Summarised the text document using gensim and TextRank
