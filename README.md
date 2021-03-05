@@ -2,7 +2,7 @@
 
 **Courses**
 
-  ## [Natural Language Processing(AIT590)](https://github.com/gauthamikuravi/Data_Analytics_Engineering/tree/main/Natural%20Language%20Processing): 
+  ##3 [Natural Language Processing(AIT590)](https://github.com/gauthamikuravi/Data_Analytics_Engineering/tree/main/Natural%20Language%20Processing): 
   
  [Lab -1 Text Summarization for Webpage](https://github.com/gauthamikuravi/Data_Analytics_Engineering/blob/main/Natural%20Language%20Processing/Labs/AIT590_SaiGauthamikuravi_Lab1.ipynb)
 
@@ -10,7 +10,7 @@
 - [x] Summarised the text document using gensim and TextRank
 - [x] Calculated the Words weighted frequency
 
-## [Advanced Data Mining in Health Care(HAP880](https://github.com/gauthamikuravi/Data_Analytics_Engineering/tree/main/Healthcare_Analytics):
+### [Advanced Data Mining in Health Care(HAP880)](https://github.com/gauthamikuravi/Data_Analytics_Engineering/tree/main/Healthcare_Analytics):
 
 ### Research Project using Advanced Data Mining
 
@@ -19,7 +19,7 @@
 - [x] Predicting the High Utilization using Patients Claims.
 - [x] Predicting the Mortality of ICU Patients.
 
-**Optimize Hyperparameter Techniques**
+[Optimize Hyperparameter Techniques](https://github.com/gauthamikuravi/Data_Analytics_Engineering/blob/main/Healthcare_Analytics/Optimization.ipynb)
 
 - [x] Optimize hyperparameters for Random Forest & Logistic Regression For each of the method, search different hyperparameters.
 - [x] For different values of lambda (C) in L1 regularized logistic regression.
@@ -44,5 +44,5 @@
      
 ## Predictive Analytics (OR568)
 ## Financial Analytics and Econometrics (OR538)
-## [Data Mining (CS504)](https://github.com/gauthamikuravi/Data_Analytics_Engineering/tree/main/Data_Mining):
+### [Data Mining (CS504)](https://github.com/gauthamikuravi/Data_Analytics_Engineering/tree/main/Data_Mining):
 
