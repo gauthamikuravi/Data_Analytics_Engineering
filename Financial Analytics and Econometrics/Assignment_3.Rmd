@@ -1,0 +1,360 @@
+---
+title: "OR538 Assignment-3
+"
+author: "Sai Gauthami Kuravi (G01217086)"
+date: "9/23/2020"
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  pdf_document: default
+---
+
+
+
+##### **I. Download Tesla (TSLA), Apple (AAPL), and S&P (^GSPC) data from finance.yahoo (between 2015-09-01 and 2020-09-30) and compute the β values for TSLA and AAPL.Compare the values with those published on the yahoo web site.**
+
+
+**Apple and S&P**
+
+Yahoo uses 5 year Monthly to calculate Beta value.
+For apple, the resulting Beta value is **1.29** which close to the value in Yahoo finance for apple data is **1.31**
+
+```{r}
+library(quantmod)
+library(fBasics)
+library(zoo)
+getSymbols("AAPL",from = "2015-09-30", to = "2020-09-30", periodicity = 'monthly')
+AAPL.rtn=diff(log(AAPL$AAPL.Adjusted))
+getSymbols("^gspc",from = "2015-09-30", to = "2020-09-30", periodicity = 'monthly')
+GSPC.rtn = diff(log(GSPC$GSPC.Adjusted))
+fit3 = lm( formula = AAPL.rtn ~ GSPC.rtn)
+summary(fit3)
+
+
+```
+![alt text here](C:/Users/skura/Desktop/ApplYahooFinance.PNG)
+
+
+
+**Tesla and S&P**
+
+Yahoo uses 5 year Monthly to calculate Beta value.
+For Tesla, the resulting Beta value is **1.61** and  in Yahoo finance for apple data  the nearest Beta value is **1.69**
+
+```{r}
+getSymbols("TSLA",from = "2016-09-30", to = "2020-09-30", periodicity = 'monthly')
+TSLA.rtn=diff(log(TSLA$TSLA.Adjusted))
+getSymbols("^gspc",from = "2016-09-30", to = "2020-09-30", periodicity = 'monthly')
+GSPC.rtn = diff(log(GSPC$GSPC.Adjusted))
+fit4 = lm( formula = TSLA.rtn ~ GSPC.rtn)
+summary(fit4)
+```
+![alt text here](C:/Users/skura/Desktop/Tesla Yahoo finance.PNG)
+
+
+#### Chapter 7
+Chapter 7, Problems #3-5 (p.179); Exercise #4 (p. 181)
+
+This question is based on the code 
+
+
+```{r}
+library(MASS) # need for mvrnorm
+par(mfrow=c(1,4))
+N = 2500
+nu = 3
+set.seed(5640)
+cov=matrix(c(1, 0.8, 0.8, 1), nrow = 2)
+x= mvrnorm(N, mu = c(0, 0), Sigma = cov)
+w = sqrt(nu / rchisq(N, df = nu))
+x = x * cbind(w, w)
+plot(x, main = "(a)")
+set.seed(5640)
+cov=matrix(c(1, 0.8, 0.8, 1),nrow = 2)
+x= mvrnorm(N, mu = c(0, 0), Sigma = cov)
+w1 = sqrt(nu / rchisq(N, df = nu))
+w2 = sqrt(nu / rchisq(N, df = nu))
+x = x * cbind(w1, w2)
+plot(x, main = "(b)")
+set.seed(5640)
+cov=matrix(c(1, 0, 0, 1), nrow = 2)
+x= mvrnorm(N, mu = c(0, 0), Sigma = cov)
+w1 = sqrt(nu / rchisq(N, df = nu))
+w2 = sqrt(nu / rchisq(N, df = nu))
+x = x * cbind(w1, w2)
+plot(x, main = "(c)")
+set.seed(5640)
+cov=matrix(c(1, 0, 0, 1), nrow = 2)
+x= mvrnorm(N, mu = c(0, 0), Sigma = cov)
+w = sqrt(nu / rchisq(N, df = nu))
+x = x * cbind(w, w)
+plot(x, main = "(d)")
+```
+
+
+##### **Problem 3 Which sample has independent variates? Explain your answer.**
+
+**The sample with independent covariate is (c)** because the we could see the covariance matrix with zero  off diagonal elements .There is no linearity with the two variables from the w parameter.
+
+##### *Which sample has variates that are correlated but do not have tail dependence? Explain your answer.**
+
+** The sample with correlated variates without tail dependence is (b)**  If we could see and compare with the (c) AND (a)  samples has some tail dependence. For the (b) we could see covariance matrix  has no  zero off diagnoal elemnets.
+
+
+
+##### **Which sample has variates that are uncorrelated but with tail dependence? Explain your answer.**
+
+**The sample with uncorrelated variates but with tail dependence is (d)** To investigate whether extreme values tend to
+cluster in this way, one should look at the scatterplots, those observation seems uncorrelated and we could see the tail dependence. 
+
+
+
+
+
+##### **1. Suppose that E(X) = 1, E(Y) = 1.5, Var(X) = 2, Var(Y) = 2.7, and Cov(X, Y ) = 0.8.**
++ **(a) What are E(0.2X + 0.8Y ) and Var(0.2X + 0.8Y )?**
+
+
+
+$$E (0.2X + 0.8Y)$$
+E (0.2X + 0.8Y)
+
+
+$${0.2*E(X)} + {0.8*E(Y)}$$
+
+$${0.2} + {1.2}$$
+$$= 1.4$$
+
++  $$Var (0.2X + 0.8Y)$$
+$${(0.2) ^2 *Var(X)} + {(0.8) ^2 *Var(Y)} + {2*0.2*0.8*0.8}$$
+$${0.08} + {1.728} + {0.256}$$
+$$=2.064$$
+
+
++ **(b) For what value of w is Var{wX +(1−w)Y } minimized? Suppose that X is the return on one asset and Y is the return on a second asset. Why would it be useful to minimize Var{wX + (1 − w)Y }?**
+
+
+
++ As we could see X is the return on one asset and Y is the return on a second asset
+
+$$Var {wX +(1−w)Y }$$
+
+
+$$w^2var(x)+2*w*(1-w)*0.8+(1-w)^2*2.7$$
+
+
+**By Differentiating the above equation w.r.t W **
+
+$$d/dw = 4w+0.16-0.32+0+5.4w-5.4$$
+
+** To minimize the equation we consider d/dw = 0**
+
+$$4w+0.16-0.32+0+5.4w-5.4 = 0$$
+**By solving for w, we get 
+
+$$9.4w = 5.56$$
+$$w = 
+0.591$$
+
+
+We would consider to minimize the variance as it lowers the risk for the returns on the assets.
+
+*
+
+
+
+##### **Chapter-9**
+
+
+Chapter 9, Problems #1,2,3 (p. 244); Exercise #1 (p. 245); Exercise #8 (p. 246)
+
+
+##### **Run the following R code to load the data, difference the data (since we wish to work with changes in these variables) and create a scatterplot matrix.**
+
+```{r}
+library(car)
+```
+
+```{r}
+library(AER)
+
+data("USMacroG")
+MacroDiff = as.data.frame(apply(USMacroG, 2, diff))
+attach(MacroDiff)
+pairs(cbind(consumption, dpi, cpi, government, unemp))
+```
+
+
+
+
+
+##### **1. Suppose that Yi = β0 + β1Xi + i, where i is N(0, 0.3), β0 = 1.4, and β1 = 1.7.**
+
+
++ **(a) What are the conditional mean and standard deviation of Yi given that Xi = 1? What is P(Yi ≤ 3|Xi = 1)?**
+
+For the given that  $$X_{i} = 1$$ 
+$$Y_{i} ∼ N(1.4 + 1.7, 0.3) = N(3.1, 0.3)$$
+Thus the conditional mean of Y is 3.1 and the conditional standard deviation of Y is √0.3 =
+0.5477226.
+
+The conditional probablity is 3.1 
+The standard deviation is is 0.5477
+The $$ P(Y_{i} <= 3|x_{i} = 1)$$
+
+```{r}
+sqrt(0.3)
+pnorm( 3, mean=3.1, sd=sqrt(0.3) )
+```
+
+
+
++ **(b) A regression model is a model for the conditional distribution of Yi given Xi. However, if we also have a model for the marginal distribution of Xi, then we can find the marginal distribution of Yi. Assume that Xi is N(1, 0.7). What is the marginal distribution of Yi? What is P(Yi ≤ 3)?**
+
+
+
+
+$$ p(Y_{i} <= 3) = $$
+
+
+```{r}
+
+s = c(1,0.7)
+pnorm(3, 3.1, s)
+```
+
+
+
+
+##### **Sometimes it is believed that β0 is 0 because we think that E(Y |X = 0) = 0. Then the appropriate model is yi = β1Xi + i. This model is usually called “regression through the origin” since the regression line is forced through the origin. The least-squares estimator of β1 minimizes**
+
+
+ equation 1
+
+ 
+ $$\sum_{i=1}^{n}({Y_{i}-\beta_{1}X_{i}})^2 $$ 
+
+**Find a formula that gives ˆ β1 as a function of the Yis and the Xis.**
+
+
++ (a). The least squares estimator of $$\beta_{1}$$  can be obtained by residual sum of squares of $$\beta_{!}$$ is minimized to =0
+
+
+$$\frac{d}{d\beta_{1]}} RSS(\beta_{1}) = 0 $$
+
+from  equation 1  taking a derivative and minimizing the beta value
+
+
+$$2 \sum_{i=1}^{n} ((Y_{i}-\beta_{1} X_{i}) (-X_{i})$$
+
+From above equation solving for Beta1
+
+$$\frac{\sum_{i=1}^{n} X_{i}Y{i}} {\sum_{i}^{n} X_{i}^2}  $$
+
+The least square line is 
+
+$$Y= \beta_{1}X$$
+
+Since $$\beta_{1} = \sum_{i}^{n} w_{i}y_{i}$$
+
+
+wi is weighted sum of independent random variable. All we need to compute the Expectation and Vraiance of 
+$$\beta_{1}$$
+$$E(\beta_{1}) = E[\sum_{i}^{n} w_{i}y_{i}] = E[\sum_{i}^{n} (\beta_{1} x_{i})(w_{i}]$$
+
+$$= E[\sum_{i}^{n} (\frac{\sum_{i=1}^{n} x_{i}} {x_{i}^2} (\beta_{1} x_{i})$$
+
+$$ \beta_{1} \sum_{i =1}^{n} \frac{\sum_{i =1}^{n} x_{i}^2} {x_{i}^2}  = \beta_{1}$$
+
+
+
+Now, We can compute the variance
+
+$$ var(\beta_{1}) = \sum_{i}^{n}w_{i}y_{i} = \sum_{i}^{n}w_{i} ^2 \sigma ^2 $$
+
+
+$$    =\sigma^2 \frac{1} {\sum_{i}^{n}x_{i}^2}=         $$
+For a normal linear regression model the distribution of the sum of least-squares residuals has a distribution equal to σ.
+
+$$ =\sum_{i=1}^{n}({Y_{i}-\beta_{1}X_{i}})^2 =\sigma^2 x_{df =(n =1)}^2       $$
+$$ \sigma^2 =\frac{RSS}{n-1}$$
+
+hence the above equation is unbiased estimate of sigma for the degree of freesom =1.
+
+
+
+##### **Simulate daily stock prices for 100 days for a stock with the following GBM model and parameters:**
+
+**𝜇 = 0.05; 𝜎 = 0.15; 𝑆! = 50; 𝜀 = 𝑁(0; 1) **
+
+
++ **1.Conduct 10,000 Monte Carlo trials and plot the histogram of the stock prices at the end of 100 days.**
+
+Simulating the stocks using GBM model. For each day it is 1/252  year
+
+
+```{r}
+set.seed(1234)
+
+S0 = 50;
+dt = 1/252;
+mu = 0.05;
+sig = 0.15;
+
+
+
+Stockp = rep(0,10000)
+Sp = rep(0,100)
+Sp[1] = S0;
+
+#dev.new()
+#par(mfrow = (c(2,1)))
+
+for (i in 1:10000)
+{
+  for (n in 2:100)
+    
+  { dS = Sp[n-1] * (mu * dt + sig * rnorm(1) * sqrt(dt));
+  Sp[n] = Sp[n-1] + dS;
+  }
+  Stockp[i] = Sp[n];
+  if (i == 1) 
+  { plot(Sp, type = "l", ylim = c(50, 200), xlab = "Days", ylab ="Stock Price", col = "blue") }
+  else
+  { lines(Sp, col = rgb(runif(1), runif(1), runif(1))) }
+  end
+}
+
+
+
+```
+
+```{r}
+R = rep(0,100)
+R[1] = 0;
+```
+
++ **2.Repeat (1) by replacing the random term 𝜎𝜀√Δ𝑡 in GBM by 𝑠𝑡𝑑"(0, 𝜎√Δ𝑡), namely, astandardized t distribution with zero mean, STD equal to 𝜎√Δ𝑡, and a degree of freedom 3**
+
+```{r}
+## It can be shown that the resulting stock price should follow lognormal distribution with logmean = log(S0) + (mu-sig^2/2)* DT and STD = sig * sqrt(DT)
+bin_number = 20;
+hist(Stockp,bin_number, main = "Histogram", xlab = "Stock Price on the 100th Day");
+dtt = 100/252;
+mlog = log(S0) + (mu-sig^2/2) * dtt;
+mstd = sig * sqrt(dtt);
+
+
+dd = dlnorm(c(60:160), meanlog=mlog, sdlog = mstd);
+binwidth = (160-60)/bin_number;
+lines(c(60:160), dd*10000*binwidth, lty=3, col="RED", lwd=3)
+```
+
+
++ **Compare (1) and (2) and discuss your results.**
+
+From (1) we can sample the random paths of the stock price by sampling values for e. From(2), we tried to plot the stock price for the given time T for, its price today is lognormally distributed.  It can be seen that the simulation results match the theoretical curve very well
+
+
+
